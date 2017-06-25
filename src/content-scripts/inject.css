@@ -1,0 +1,59 @@
+/**
+ * Place your custom CSS styles here.
+ **/
+
+.probably-a-bot {
+  -webkit-filter: blur(10px);
+}
+
+.probably-a-bot-mask {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  display: inline-block;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.probably-a-bot-mask-message-tall {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 50%;
+  height: 30%;
+  margin: auto;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+}
+
+.probably-a-bot-mask-message-medium {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+}
+
+.probably-a-bot-mask-message-short {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 50%;
+  margin: auto;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
