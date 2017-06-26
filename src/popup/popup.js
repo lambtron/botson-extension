@@ -40,7 +40,7 @@ Twitter.isLoggedIn(function(items) {
  */
 
 function calculateBotsAndAccounts(items) {
-  var accounts = Object.keys(items).length - 2;
+  var accounts = Object.keys(items).length - 3;
   var bots = 0;
   for (userId in items) if (items[userId].score > 0.6) bots++;
   return { accounts: accounts, bots: bots };
@@ -65,3 +65,20 @@ function getAccountText(accounts) {
   if (accounts === 1) return accounts + ' account checked.';
   return accounts + ' accounts checked.';
 }
+
+/**
+ * Analytics.
+ */
+
+var analytics = new Analytics('aO23Wx83MZQnaPWyRvxffagdSm9I302w');
+
+/**
+ * Get ID.
+ */
+
+chrome.storage.local.get(['user_id'], function(items) {
+  analytics.track({
+    userId: items.user_id,
+    event: 'Icon Clicked'
+  });
+});

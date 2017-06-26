@@ -1,5 +1,7 @@
 # Botson
 
+![botson pipe](https://github.com/lambtron/botson-extension/blob/master/docs/img/meta.png?raw=true)
+
 > A chrome extension to detect bots in your twitter newsfeed.
 
 [Install on Chrome]().

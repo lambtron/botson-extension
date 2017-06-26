@@ -26,3 +26,4 @@ function trackLink(anchor) {
     text: anchor.title
   });
 }
+
