@@ -30,7 +30,7 @@ If you click on the extension icon again, there are some simple metrics about th
 
 ## Contribute
 
-The code base is open sourced here. If you have feature requests or ideas, [please feel free to create an issue](https://github.com/lambtron/botbusters-extension/issues).
+The code base is open sourced here. If you have feature requests or ideas, [please feel free to create an issue](https://github.com/lambtron/botson-extension/issues).
 
 ## License
 
