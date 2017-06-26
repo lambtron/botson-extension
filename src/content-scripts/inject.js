@@ -7,7 +7,7 @@ chrome.extension.sendMessage({}, function(response) {
        * Start.
        */
 
-      chrome.storage.local.get(['oauth_token', 'oauth_token_secret'], function(items) {
+      chrome.storage.local.get(['oauth_token', 'oauth_token_secret', 'user_id'], function(items) {
         if (!items.oauth_token || !items.oauth_token_secret) return;
         refresh(items);
         setInterval(function() { return refresh(items) }, 5000);
@@ -58,6 +58,7 @@ chrome.extension.sendMessage({}, function(response) {
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.setRequestHeader("x-twitter-oauth-token", auth.oauth_token);
         xhttp.setRequestHeader("x-twitter-oauth-secret", auth.oauth_token_secret);
+        if (auth.user_id) xhttp.setRequestHeader("x-twitter-user-id", auth.user_id);
         xhttp.send(JSON.stringify(user));
         xhttp.onload = saveUsers;
       }
