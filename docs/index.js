@@ -19,7 +19,7 @@ window.addEventListener('click', (e) => {
  */
 
 function trackLink(anchor) {
-  window.analytics.track('Link Clicked', {
+  window.analytics.trackLink(anchor, 'Link Clicked', {
     href: anchor.href,
     location: anchor.getAttribute('data-link-location'),
     style: anchor.getAttribute('data-link-style'),
