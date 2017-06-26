@@ -17,6 +17,13 @@
   color: #8b3232;
 }
 
+/*da8c5e*/
+
+/*red: 8b3232*/
+.hover-bg-orange:hover {
+  background-color: #da8c5e;
+}
+
 .bg-blue {
   background-color: #252f58;
 }
