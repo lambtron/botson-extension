@@ -24,7 +24,8 @@ a:focus {
   width: 100%;
   height: 30px;
   padding-top: 6px;
-  background-color: pink;
+  background-color: #252f58;
+  color: white;
   font-size: 1.25rem;
 }
 
@@ -32,7 +33,7 @@ a:focus {
   margin: 0 auto;
   cursor: pointer;
   border-radius: 5px;
-  border-color: #1DA1F2;
+  border-color: #252f58;
   border-style: none;
   padding: 6px 15px 8px;
   text-transform: lowercase;
@@ -40,7 +41,7 @@ a:focus {
   line-height: 1;
   display: inline-block;
   text-decoration: none;
-  background-color: #1DA1F2;
+  background-color: #252f58;
   color: #fff;
 }
 
