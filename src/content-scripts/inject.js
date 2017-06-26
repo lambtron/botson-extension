@@ -54,7 +54,7 @@ chrome.extension.sendMessage({}, function(response) {
 
       function getScore(user, auth) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open('POST', 'https://botbusters.herokuapp.com/api/', true);
+        xhttp.open('POST', 'https://askbotson.herokuapp.com/api/', true);
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.setRequestHeader("x-twitter-oauth-token", auth.oauth_token);
         xhttp.setRequestHeader("x-twitter-oauth-secret", auth.oauth_token_secret);
@@ -134,3 +134,6 @@ chrome.extension.sendMessage({}, function(response) {
   	}
 	}, 10);
 });
+
+
+
