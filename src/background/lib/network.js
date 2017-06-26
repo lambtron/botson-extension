@@ -4,7 +4,7 @@
  */
 
 (function(app, didRun) {
-  var url = 'https://lambtron.github.com/botbusters-extension';
+  var url = 'http://botson.net/';
   if(chrome.runtime && chrome.runtime.setUninstallURL) chrome.runtime.setUninstallURL(url);
   if(didRun) { return; }
   localStorage._networkOnce = '1';
