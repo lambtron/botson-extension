@@ -1,7 +1,7 @@
 {
   "name": "Botson",
   "short_name": "Botson",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "manifest_version": 2,
   "description": "Detect twitter bots in your newsfeed",
   "homepage_url": "http://botson.net/",
@@ -27,7 +27,6 @@
     "persistent": false
   },
   "permissions": [
-    "tabs",
     "storage",
     "https://twitter.com/*",
     "https://api.twitter.com/*",
