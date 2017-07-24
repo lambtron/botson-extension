@@ -52,6 +52,7 @@ a:focus {
 .accounts {
   text-align: left;
   margin: 6px;
+  clear: both;
 }
 
 .bots {
@@ -69,4 +70,30 @@ a.logout {
   margin: 6px;
   text-align: right;
   float: right;
+}
+
+input.range {
+  margin: 6px;
+  width: 82px;
+  position: absolute;
+  left: 36px;
+}
+
+input.range::-webkit-slider-thumb {
+  cursor: pointer;
+}
+
+input.range:focus {
+  outline: none;
+}
+
+.adjust-range > .range-value {
+  margin: 6px;
+  float: left;
+}
+
+.cube {
+  width: 200%;
+  transition: 0.5s ease-in-out;
+  /*background: blue;*/
 }

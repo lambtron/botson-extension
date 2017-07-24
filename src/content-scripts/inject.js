@@ -31,7 +31,7 @@ chrome.extension.sendMessage({}, function(response) {
        * Get users dictionary from timeline.
        */
 
-      function getUsersFromTimeline () {
+      function getUsersFromTimeline() {
         var tweets = document.querySelectorAll('div.tweet');
         var users = {};
         for (var i = 0; i < tweets.length; i++) {
@@ -77,7 +77,7 @@ chrome.extension.sendMessage({}, function(response) {
       }
 
       /**
-       * Update dom.
+       * Update dom with data.
        */
 
       function update() {
@@ -86,17 +86,51 @@ chrome.extension.sendMessage({}, function(response) {
           var users = items;
           for (var i = 0; i < tweets.length; i++) {
             for (var userId in users) {
-              if (tweets[i].getAttribute('data-updated') === 'true') continue;
+              if (!users[userId].score || !users[userId].screen_name) continue;
               if (tweets[i].getAttribute('data-user-id') !== userId.toString()) continue;
-              if (users[userId].score > 0.6) {
-                tweets[i].className += ' probably-a-bot';
-                tweets[i].parentNode.insertBefore(createMask(users[userId], tweets[i].scrollHeight), tweets[i]);
-              }
-              tweets[i].setAttribute('data-updated', 'true');
+              if (tweets[i].getAttribute('data-bot-score')) continue;
+              tweets[i].setAttribute('data-bot-score', users[userId].score);
             }
           }
+          updateUI(items.threshold);
         });
       }
+
+      /**
+       * Update dom UI.
+       */
+
+      function updateUI(threshold) {
+        threshold = threshold || 0.6;
+        var tweets = document.querySelectorAll('div.tweet');
+        for (var i = 0; i < tweets.length; i++) {
+          toggleTweetUI(tweets[i], threshold);
+        }
+      }
+
+      /**
+       * Toggle UI for tweet.
+       */
+
+      function toggleTweetUI(tweet, threshold) {
+        var score = tweet.getAttribute('data-bot-score');
+        var screen_name = tweet.getAttribute('data-screen-name');
+        if (score > threshold && !tweet.getAttribute('user-revealed')) {
+          if (!tweet.classList.contains('probably-a-bot')) tweet.className += ' probably-a-bot';
+          if (!tweet.parentNode.querySelector('.probably-a-bot-mask')) tweet.parentNode.insertBefore(createMask({ score: score, screen_name: screen_name }, tweet.scrollHeight), tweet);
+        } else {
+          tweet.classList.remove('probably-a-bot');
+          if (tweet.parentNode.querySelector('.probably-a-bot-mask')) tweet.parentNode.querySelector('.probably-a-bot-mask').remove();
+        }
+      }
+
+      /**
+       * On slider change, then update UI.
+       */
+
+      chrome.storage.onChanged.addListener(function(changes, namespace) {
+        for (key in changes) if (key === 'threshold' && changes.threshold.newValue) updateUI(changes.threshold.newValue);
+      });
 
       /**
        * Create mask and message div.
@@ -109,12 +143,13 @@ chrome.extension.sendMessage({}, function(response) {
         message.className = 'probably-a-bot-mask-message-short';
         if (height > 150) message.className = 'probably-a-bot-mask-message-medium';
         if (height > 300) message.className = 'probably-a-bot-mask-message-tall';
-        message.innerHTML = 'We are ' + (100 * user.score) + '% confident that this tweet is from a bot.';
+        message.innerHTML = 'We are ' + Math.round(100 * user.score) + '% confident that this tweet is from a bot.';
         message.innerHTML += '<p style="font-size: 0.8rem"><a href="#/" class="reveal-tweet">Reveal tweet</a>. <a href="https://botometer.iuni.iu.edu/#!/?sn=' + user.screen_name + '" target="_blank">Learn more about this account</a>.</p>';
         mask.appendChild(message);
         message.childNodes[1].childNodes[0].addEventListener('click', function(e) {
-          this.parentNode.parentNode.parentNode.parentNode.childNodes[2].classList.remove('probably-a-bot')
-          this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode)
+          this.parentNode.parentNode.parentNode.parentNode.childNodes[2].classList.remove('probably-a-bot');
+          this.parentNode.parentNode.parentNode.parentNode.childNodes[2].setAttribute('user-revealed', true);
+          this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode);
         });
         return mask;
       }

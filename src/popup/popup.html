@@ -16,6 +16,20 @@
       <div class="header">botson</div>
       <div class="accounts"></div>
       <div class="bots"></div>
+      <div style="text-align: left; margin: 6px;">
+        <p>Tweets from accounts scoring over <span class="range-value">0</span> will be concealed.</p>
+      </div>
+      <div class="cube" style="display: inline-block">
+        <div style="float: left; text-align: left; padding: 6px;">
+          <a class="show-range" href="#/">Adjust score threshold</a>
+        </div>
+        <div class="adjust-range" style="width: 158px; float: right; text-align: left; position: relative; height: 40px">
+          <span class="range-value">0</span>
+          <input class="range" type="range" min="0" max="1" step="any">
+          <a class="hide-range" href="#/" style="position: absolute; right: 6px; top: 4px;">Ok</a>
+          <a target="_blank" href="https://botometer.iuni.iu.edu/#!/faq#which-score" style="position: absolute; bottom: 0px; left: 5px;">Interpreting the score</a>
+        </div>
+      </div>
       <div>
         <span class="learn"><a target="_blank" href="http://botson.net/">Learn more</a></span>
         <a class="logout" href="#/">Logout</a>
